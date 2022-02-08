@@ -2,5 +2,18 @@
 
 @section('title', 'HomePage')
 
-@section('content', 'Hello How are you!')
+
+
+
+@section('content')
+
+
+@include('Component.HomeBanner')
+
+@include('Component.HomeService')
+
+
+
+
+@endsection
 
