@@ -18,3 +18,10 @@ Route::get('/','App\Http\Controllers\HomeController@HomeIndex');
 Route::get('/visitor','App\Http\Controllers\VisitorController@VisitorIndex');
    
 
+Route::get('/service','App\Http\Controllers\ServiceController@ServiceIndex');
+
+
+//Route::get('/getServicesData','App\Http\Controllers\ServiceController@getServiceData');
+
+
+Route::get('/Data','App\Http\Controllers\ServiceController@getServiceData');

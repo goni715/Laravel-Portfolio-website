@@ -18,12 +18,12 @@
   </thead>
   <tbody>	
 
-         @foreach($VisitorData as $VisitorData)
+         @foreach($VisitorData as $value)
 
            <tr>
-               <td>{{$VisitorData->id}}</td>
-               <td>{{$VisitorData->ip_address}}</td>
-               <td>{{$VisitorData->visit_time}}</td>
+               <td>{{$value->id}}</td>
+               <td>{{$value->ip_address}}</td>
+               <td>{{$value->visit_time}}</td>
            </tr>
          @endforeach
 
