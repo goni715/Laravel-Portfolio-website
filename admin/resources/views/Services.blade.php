@@ -64,7 +64,24 @@
 
 
 
+<!--Modals Part-->
 
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+   
+      <div class="modal-body text-center p-3">
+          <h5 class="m-4">Do You Want To Delete!</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">No</button>
+        <button type="button" id="deleteBtn" value="" class="btn btn-sm btn-danger">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -76,6 +93,64 @@
 <script type="text/javascript">
 
        getServicesData();
+
+
+
+             
+                 var deleteBtn = document.querySelectorAll('#deleteBtn');
+                 var len = deleteBtn.length;
+
+
+                  for(var i=0; i < len; i++){
+
+                  deleteBtn[i].addEventListener('click', function(){
+
+                    // alert('hello');
+
+                   var myID = this.value;
+
+                   alert(myID);
+   
+                  /* var url = "/deleteData";
+                   var data = {id:myID};
+
+
+ 
+                axios.post(url,data)
+                .then(function (response) {
+
+                 alert(response.data);
+
+
+                 })
+                 .catch(function (error) {
+                  console.log(error);
+                 });
+
+                  */
+
+
+                  }); /* deleteBtn click event ended */
+
+
+
+
+                  }/* delete Button loop Ended */
+
+
+
+
+
+
+         
+
+
+
+//alert('hello');
+
+
+
+
 
 </script>
 @endsection

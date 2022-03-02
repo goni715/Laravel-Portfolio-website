@@ -27,8 +27,10 @@ function getServicesData(){
           "<td class='th-sm'>"+ jsonData[i].service_name +"</td>"+
           "<td class='th-sm'>"+jsonData[i].service_des +"</td>"+
           "<td class='th-sm'><a href='' ><i class='fas fa-edit'></i></a></td>"+
-          "<td class='th-sm'><a href='' ><i class='fas fa-trash-alt'></i></a></td>" 
+          "<td class='th-sm'><a data-toggle='modal' data-target='#deleteModal' href='' ><i class='fas fa-trash-alt'></i></a></td>" 
           ).appendTo('#service_table');
+
+         // $('#deleteBtn').val(jsonData[i].id);
 
       });
      
@@ -54,3 +56,8 @@ function getServicesData(){
 
 
 } /* Function End */
+
+
+
+
+
