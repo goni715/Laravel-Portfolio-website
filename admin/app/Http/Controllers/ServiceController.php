@@ -21,10 +21,8 @@ class ServiceController extends Controller
       function getServiceData(){
 
             
-              $result = json_encode(ServicesModel::all());
-             
-              $result = json_decode($result);
-              return $ressult;
+              $result = json_encode(ServicesModel::all());                      
+              return $result;
 
        }
 
