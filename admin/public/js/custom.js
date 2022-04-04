@@ -8,7 +8,7 @@ $('.dataTables_length').addClass('bs-select');
 
 function getServicesData(){
 
-
+/* Hello*/
     axios.get('/getServicesData')
     .then(function (response) {
 
