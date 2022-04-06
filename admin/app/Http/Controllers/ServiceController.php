@@ -21,34 +21,47 @@ class ServiceController extends Controller
       function getServiceData(){
      
               $result = json_encode(ServicesModel::all());                      
-              return $result;
-
-              
+              return $result;       
 
        }
 
 
       
 
-        public function ServiceDelete(Request $req){
+
+
+
+        function ServiceDelete(Request $req){
+ 
+                       $id = $req->input('id');
+        
+                        $result = ServicesModel::where('id','=',$id)->delete();
+        
+                      if($result == true){
+        
+                            return 1;
+        
+                         }else{
+        
+                             return 0;
+                         }
+        
+          
+        }/* Service Delete */
+       
+
+
+         
+        function ServiceDetails(Request $req){
  
             $id = $req->input('id');
-        
-           $result = DB::delete('DELETE FROM `students` WHERE id=?', [$id]);
-        
-           if($result == true){
-        
-              return "Delete Success";
-        
-           }else{
-        
-              return "Delete Failled";
-           }
-        
-        
-        
-          }
-       
+
+             $result = json_encode(ServicesModel::where('id','=',$id)->get());
+
+           return $result;
+
+
+         }/* Service Details function Ended */
 
 
 
@@ -56,4 +69,4 @@ class ServiceController extends Controller
 
 
 }
-/* Service Delete */
+

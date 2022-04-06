@@ -24,3 +24,8 @@ Route::get('/service','App\Http\Controllers\ServiceController@ServiceIndex');
 Route::get('/getServicesData','App\Http\Controllers\ServiceController@getServiceData');
 
 
+Route::post('/ServiceDelete','App\Http\Controllers\ServiceController@ServiceDelete');
+
+Route::post('/ServiceEdit','App\Http\Controllers\ServiceController@ServiceDetails');
+
+
