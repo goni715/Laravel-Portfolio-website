@@ -93,23 +93,19 @@
    
       <div class="modal-body text-center p-3">
           
-      <h5 id="serviceEditID" class="mt-4"></h5> 
+           <h5 id="serviceEditID" class="mt-4"></h5> 
 
-  <!-- Name input -->
-  <div class="form-outline mb-4">
-    <input type="text" id="name" class="form-control" placeholder="Service Name"/>
-  </div>
-  <div class="form-outline mb-4">
-    <input type="email" id="des" class="form-control" placeholder="Service Description" />
-  </div>
-  <div class="form-outline mb-4">
-    <input type="email" id="img" class="form-control" placeholder="Service Image Link" />
-  </div>
+  <!-- EDit Form-->
+          <div id="serviceEditForm" class="d-none w-100">
+            <input type="text" id="serviceNameID" class="form-control mb-4" placeholder="Service Name"/>
+            <input type="email" id="serviceDesID" class="form-control mb-4" placeholder="Service Description" />
+            <input type="email" id="serviceImgID" class="form-control mb-4" placeholder="Service Image Link" />
+          </div>
 
+        <img id="serviceEditLoader" class="loading-icon m-5" src="{{asset('images/loader.svg')}}" alt="" /> 
+        <h5 class="d-none">Something went wrong!</h5>
 
-
-
-      </div>
+       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</button>
         <button type="button" id="serviceEditConfirmBtn" class="btn btn-sm btn-danger">Save</button>
@@ -117,10 +113,6 @@
     </div>
   </div>
 </div>
-
-
-
-
 
 
 

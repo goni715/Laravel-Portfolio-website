@@ -52,7 +52,7 @@ class ServiceController extends Controller
 
 
          
-        function ServiceDetails(Request $req){
+        function getServiceEditFormData(Request $req){
  
             $id = $req->input('id');
 
@@ -64,6 +64,30 @@ class ServiceController extends Controller
          }/* Service Details function Ended */
 
 
+
+
+         /* Service Update function Started */
+         function ServiceUpdate(Request $req){
+ 
+          $id = $req->input('id');
+          $name = $req->input('name');
+          $des = $req->input('des');
+          $img = $req->input('img');
+
+          $result = ServicesModel::where('id','=',$id)->update(['service_name'=>$name, 'service_des'=>$des, 'service_img'=>$img]);
+
+
+           if($result == true){
+
+              return 1;
+
+           }else{
+
+               return 0;
+           }
+
+
+       }/* Service Details function Ended */
 
 
 
