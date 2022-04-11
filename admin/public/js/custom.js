@@ -1,57 +1,33 @@
-$(document).ready(function() {
-    $('#VisitorDt').DataTable();
-    $('.dataTables_length').addClass('bs-select');
-});
 
 
 
 
-function getServicesData() {
+function getCoursesData(){
 
-    axios.get('/getServicesData')
-        .then(function(response) {
+    axios.get('/getCoursesData')
+    .then(function(response) {
 
             if (response.status == 200) {
 
 
-                $('#mainDiv').removeClass('d-none');
-                $('#loaderDiv').addClass('d-none');
+                $('#mainDivCourse').removeClass('d-none');
+                $('#loaderDivCourse').addClass('d-none');
 
-                $('#service_table').empty();
+                $('#courses_table').empty();
+            
 
                 var jsonData = response.data;
 
                 $.each(jsonData, function(i, item) {
                     $('<tr>').html(
-                        "<td><img class='table-img' src=" + jsonData[i].service_img + "></td>" +
-                        "<td class='th-sm' >" + jsonData[i].service_name + "</td>" +
-                        "<td class='th-sm'>" + jsonData[i].service_des + "</td>" +
-                        "<td class='th-sm'><a data-toggle='modal' class='serviceEditBtn' data-id=" + jsonData[i].id + " data-target='#editModal' ><i class='fas fa-edit'></i></a></td>" +
-                        "<td class='th-sm'><a data-toggle='modal' class='serviceDeleteBtn' data-id=" + jsonData[i].id + " data-target='#deleteModal' href='' ><i class='fas fa-trash-alt'></i></a></td>"
-                    ).appendTo('#service_table');
-
-                });
-
-
-                // Service Delete Icon click
-                $('.serviceDeleteBtn').click(function() {
-
-                    var id = $(this).data('id');
-                    $('#serviceDeleteID').html(id);
-
-                });
-
-
-
-
-                /* Service Data Edit Area Started */
-                // Service Edit icon click
-                $('.serviceEditBtn').click(function() {
-
-                    var id = $(this).data('id');
-                    $('#serviceEditID').html(id);
-
-                    getServiceEditFormData(id);
+                        "<th class='th-sm'>"+jsonData[i].course_name+"</th>"+
+	                    "<th class='th-sm'>"+jsonData[i].course_fee+"</th>"+
+	                    "<th class='th-sm'>"+jsonData[i].course_totalclass+"</th>"+
+	                    "<th class='th-sm'>"+jsonData[i].course_totalenroll+"</th>"+
+                        "<td class='th-sm'><a data-toggle='modal' class='s' data-id=" + jsonData[i].id + " data-target='#editModal' ><i class='fas fa-eye'></i></a></td>" +
+                        "<td class='th-sm'><a data-toggle='modal' class='' data-id=" + jsonData[i].id + " data-target='#editModal' ><i class='fas fa-edit'></i></a></td>" +
+                        "<td class='th-sm'><a data-toggle='modal' class='' data-id=" + jsonData[i].id + " data-target='#deleteModal' href='' ><i class='fas fa-trash-alt'></i></a></td>"
+                    ).appendTo('#courses_table');
 
                 });
 
@@ -60,16 +36,16 @@ function getServicesData() {
             } else {
 
 
-                $('#loaderDiv').addClass('d-none');
-                $('#wrongDiv').removeClass('d-none');
+                $('#loaderDivCourse').addClass('d-none');
+                $('#wrongDivCourse').removeClass('d-none');
 
 
             }
 
         }).catch(function(error) {
 
-            $('#loaderDiv').addClass('d-none');
-            $('#wrongDiv').removeClass('d-none');
+                $('#loaderDivCourse').addClass('d-none');
+                $('#wrongDivCourse').removeClass('d-none');
 
         });
 
@@ -81,178 +57,109 @@ function getServicesData() {
 
 
 
-// Service Delete Modal Yes Button
-$('#serviceDeleteConfirmBtn').click(function() {
-
-    var id = $('#serviceDeleteID').html();
-    ServiceDelete(id);
-
-});
-
-/* Service Delete Function Started*/
-function ServiceDelete(deleteID) {
-
-    /*progress spinner*/
-    $('#serviceDeleteConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>");
-
-    axios.post('/ServiceDelete', {
-            id: deleteID
-        })
-        .then(function(response) {
-
-            $('#serviceDeleteConfirmBtn').html('Yes');
-
-            if (response.status == 200) {
-
-                if (response.data == 1) {
-
-                    $('#deleteModal').modal('hide');
-                    toastr.success('Delete Success');
-                    getServicesData();
-
-                } else {
-
-                    $('#deleteModal').modal('hide');
-                    toastr.error('Delete Fail');
-                    getServicesData();
 
 
-                }
+$('#addNewCourseBtnID').click(function(){
 
-            } else {
-
-                $('#deleteModal').modal('hide');
-                toastr.error('Something Went Wrong!');
-            }
-
-
-        })
-        .catch(function(error) {
-
-            $('#deleteModal').modal('hide');
-            toastr.error('Something Went Wrong!');
-        });
-
-
-
-} /*serviceDelete function Ended*/
-
-
-
-
-
-
-function getServiceEditFormData(editFormID) {
-
-
-    axios.post('/ServiceEditform', {
-            id: editFormID
-        })
-        .then(function(response) {
-
-            if (response.status == 200) {
-
-                $('#serviceEditForm').removeClass('d-none');
-                $('#serviceEditLoader').addClass('d-none');
-
-                var jsonData = response.data;
-
-                $('#serviceNameID').val(jsonData[0].service_name);
-                $('#serviceDesID').val(jsonData[0].service_des);
-                $('#serviceImgID').val(jsonData[0].service_img);
-
-            } else {
-
-                $('#serviceEditLoader').addClass('d-none');
-                $('#serviceEditWrong').removeClass('d-none');
-
-            }
-
-
-        })
-        .catch(function(error) {
-
-
-            $('#serviceEditLoader').addClass('d-none');
-            $('#serviceEditWrong').removeClass('d-none');
-
-        });
-
-
-}
-
-
-
-
-/* Service Save button Click */
-$('#serviceEditConfirmBtn').click(function() {
-
-    var id = $('#serviceEditID').html();
-    var name = $('#serviceNameID').val();
-    var des = $('#serviceDesID').val();
-    var img = $('#serviceImgID').val();
-    ServiceUpdate(id, name, des, img);
+   $('#addCourseModal').modal('show');
 
 });
 
-/* ServiceUpdate function Started*/
-function ServiceUpdate(serviceID, serviceName, serviceDes, serviceImg) {
 
 
-    /*progress spinner*/
-    $('#serviceEditConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>");
 
 
-    if (serviceName.length == 0) {
-        toastr.error('Service Name is empty!');
-    } else if (serviceDes.length == 0) {
-        toastr.error('Service Description is empty!');
-    } else if (serviceImg.length == 0) {
-        toastr.error('Service Image is empty!');
-    } else {
+//Course Data Add Confirm Save button onclick
+$('#CourseAddConfirmBtn').click(function(){
 
-        axios.post('/ServiceUpdate', {
-                id: serviceID,
-                name: serviceName,
-                des: serviceDes,
-                img: serviceImg
-            })
+
+    
+    var CourseName = $('#CourseNameId').val();
+    var CourseDes = $('#CourseDesId').val();
+    var CourseFee = $('#CourseFeeId').val();
+    var CourseEnroll = $('#CourseEnrollId').val();
+    var CourseClass = $('#CourseClassId').val();
+    var CourseLink = $('#CourseLinkId').val();
+    var CourseImg = $('#CourseImgId').val();
+
+
+    var url = '/CoursesDataInsert';
+    var data = {
+        course_name : CourseName,
+        course_des : CourseDes,
+        course_fee : CourseFee,
+        course_totalenroll : CourseEnroll,
+        course_totalclass : CourseClass,
+        course_link :CourseLink,
+        course_img : CourseImg
+
+    };
+
+
+    if ( CourseName.length == 0) {
+        toastr.error('Course Name is empty!');
+    } else if (CourseDes.length == 0) {
+        toastr.error('Course Description is empty!');
+    } else if (CourseFee.length == 0) {
+        toastr.error('Course Fee is empty!');
+    } else if (CourseEnroll.length == 0) {
+        toastr.error('CourseEnroll is empty!');
+    } else if (CourseClass.length == 0) {
+        toastr.error('Course Class is empty!');
+    } else if (CourseLink.length == 0) {
+        toastr.error('Course Link is empty!');
+    } else if (CourseImg.length == 0) {
+        toastr.error('Course Image is empty!');
+    }else {
+
+
+
+        /*progress spinner*/
+        $('#CourseAddConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>");
+
+        axios.post(url, data)
             .then(function(response) {
 
-                $('#serviceEditConfirmBtn').html('Save');
+                $('#CourseAddConfirmBtn').html('Save');
 
                 if (response.status == 200) {
 
                     if (response.data == 1) {
 
-                        $('#editModal').modal('hide');
-                        toastr.success('Update Success');
-                        getServicesData();
+                        $('#addCourseModal').modal('hide');
+                        toastr.success('Add Success');
+                        getCoursesData();
 
                     } else {
 
-                        $('#editModal').modal('hide');
-                        toastr.error('Update Fail');
-                        getServicesData();
+
+                        $('#addCourseModal').modal('hide');
+                        toastr.error('Add Fail');
+                        getCoursesData();
 
                     }
 
                 } else {
 
-                    $('#editModal').modal('hide');
+                    $('#addCourseModal').modal('hide');
                     toastr.error('Something Went Wrong!');
                 }
+
 
             })
             .catch(function(error) {
 
-                $('#editModal').modal('hide');
+                $('#addCourseModal').modal('hide');
                 toastr.error('Something Went Wrong!');
 
             });
 
 
-    } /* Else ended */
+    } /* else ended */
+
+})
 
 
-} /* ServiceUpdate Function Ended*/
+
+
+

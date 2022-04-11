@@ -66,9 +66,9 @@ class ServiceController extends Controller
 
 
 
-         /* Service Update function Started */
-         function ServiceUpdate(Request $req){
- 
+      /* Service Update function Started */
+     function ServiceUpdate(Request $req){
+         
           $id = $req->input('id');
           $name = $req->input('name');
           $des = $req->input('des');
@@ -87,10 +87,42 @@ class ServiceController extends Controller
            }
 
 
-       }/* Service Details function Ended */
+       }/* Service Update function Ended */
+
+
+
+
+        /* Service Data Insert function Started */
+        function ServiceDataInsert(Request $req){
+ 
+            $name = $req->input('name');
+            $des = $req->input('des');
+            $img = $req->input('img');
+
+   
+  
+           $result = ServicesModel::insertOrIgnore(['service_name'=>$name, 'service_des'=>$des, 'service_img'=>$img]);
+  
+  
+           if($result == true){
+  
+                return 1;
+  
+             }else{
+  
+                return 0;
+             }
+  
+  
+         }/* Service Data Insert function Ended */
 
 
 
 
 }
+
+
+
+
+  
 
