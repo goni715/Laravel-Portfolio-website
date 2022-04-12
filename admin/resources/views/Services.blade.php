@@ -102,7 +102,7 @@
           </div>
 
         <img id="serviceEditLoader" class="loading-icon m-5" src="{{asset('images/loader.svg')}}" alt="" /> 
-        <h5 class="d-none">Something went wrong!</h5>
+        <h5 class="d-none" id="serviceEditWrong">Something went wrong!</h5>
 
        </div>
       <div class="modal-footer">
@@ -123,8 +123,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
    
+   
       <div class="modal-body text-center p-3">
-
+      <h5 class="modal-title">Add New Service</h5>
        <!-- data add Form-->
           <div id="serviceAddForm" class="w-100">
             <input type="text" id="serviceName" class="form-control mb-4" placeholder="Service Name"/>
@@ -195,7 +196,6 @@ function getServicesData() {
 
 
 
-                /* Service Data Edit Area Started */
                 // Service Edit icon click
                 $('.serviceEditBtn').click(function() {
 
@@ -290,7 +290,7 @@ function ServiceDelete(deleteID) {
 
 
 
-
+/*getServiceEditFormData function started */
 function getServiceEditFormData(editFormID) {
 
 
@@ -348,17 +348,19 @@ $('#serviceEditConfirmBtn').click(function() {
 function ServiceUpdate(serviceID, serviceName, serviceDes, serviceImg) {
 
 
-    /*progress spinner*/
-    $('#serviceEditConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>");
-
-
     if (serviceName.length == 0) {
         toastr.error('Service Name is empty!');
-    } else if (serviceDes.length == 0) {
+    }else if (serviceDes.length == 0) {
         toastr.error('Service Description is empty!');
-    } else if (serviceImg.length == 0) {
+    }else if (serviceImg.length == 0) {
         toastr.error('Service Image is empty!');
-    } else {
+    }else {
+
+            
+        /*progress spinner*/
+        $('#serviceEditConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>");
+
+
 
         axios.post('/ServiceUpdate', {
                 id: serviceID,
@@ -424,11 +426,11 @@ function serviceDataInsert() {
     };
 
 
-    if (serviceName.length == 0) {
+    if (service_name.length == 0) {
         toastr.error('Service Name is empty!');
-    } else if (serviceDes.length == 0) {
+    } else if (service_name.length == 0) {
         toastr.error('Service Description is empty!');
-    } else if (serviceImg.length == 0) {
+    } else if (service_img.length == 0) {
         toastr.error('Service Image is empty!');
     } else {
 
