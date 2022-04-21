@@ -11,7 +11,7 @@
         <!-- Add Button -->
          <button class="btn my-3 btn-sm btn-danger" data-toggle="modal" data-target="#addModal" >Add Data</button>
 
-      <table id="" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <table id="serviceDataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
        <thead>
          <tr>
              <th class="th-sm">Image</th>
@@ -73,7 +73,7 @@
    
       <div class="modal-body text-center p-3">
           <h5 class="mt-4">Do You Want To Delete!</h5>
-          <h5 id="serviceDeleteID" class="mt-4"></h5>
+          <h5 id="serviceDeleteID" class="mt-4 d-none"></h5>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">No</button>
@@ -89,10 +89,17 @@
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-   
-      <div class="modal-body text-center p-3">
+    
+    <div class="modal-header">
+        <h5 class="modal-title">Update Service</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+      <div class="modal-body text-center p-4">
           
-           <h5 id="serviceEditID" class="mt-4"></h5> 
+           <h5 id="serviceEditID" class="mt-4 d-none"></h5> 
 
   <!-- EDit Form-->
           <div id="serviceEditForm" class="d-none w-100">
@@ -101,10 +108,13 @@
             <input type="email" id="serviceImgID" class="form-control mb-4" placeholder="Service Image Link" />
           </div>
 
+
+    <!-- Service EditLoader & Project Edit Wrong--> 
         <img id="serviceEditLoader" class="loading-icon m-5" src="{{asset('images/loader.svg')}}" alt="" /> 
         <h5 class="d-none" id="serviceEditWrong">Something went wrong!</h5>
 
        </div>
+       
       <div class="modal-footer">
         <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</button>
         <button type="button" id="serviceEditConfirmBtn" class="btn btn-sm btn-danger">Save</button>
@@ -168,8 +178,12 @@ function getServicesData() {
                 $('#mainDiv').removeClass('d-none');
                 $('#loaderDiv').addClass('d-none');
 
-                //$('#service_table').empty();
-                $('#service_table').html(null);
+              
+                 $('#serviceDataTable').DataTable().destroy();
+                 $('#service_table').empty();
+                 //$('#service_table').html(null);
+
+
 
                 var jsonData = response.data;
 
@@ -205,6 +219,10 @@ function getServicesData() {
                     getServiceEditFormData(id);
 
                 });
+
+
+                   $('#serviceDataTable').DataTable({"order":false});
+                   $('.dataTables_length').addClass('bs-select');
 
 
 

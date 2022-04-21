@@ -37,8 +37,14 @@ Route::get('/getCoursesData','App\Http\Controllers\CoursesController@getCoursesD
 Route::post('/CoursesDataInsert','App\Http\Controllers\CoursesController@CoursesDataInsert');
 Route::post('/CoursesDelete','App\Http\Controllers\CoursesController@CoursesDelete');
 Route::post('/CourseEditform','App\Http\Controllers\CoursesController@getCourseEditFormData');
-Route::get('/CourseUpdate','App\Http\Controllers\CoursesController@CourseUpdate');
+Route::post('/CourseUpdate','App\Http\Controllers\CoursesController@CourseUpdate');
 
 
-Route::post('/CoursesDetails','App\Http\Controllers\CoursesController@getCoursesDetails');
 
+// Admin Panel Project Management
+Route::get('/project','App\Http\Controllers\ProjectController@ProjectIndex');
+Route::get('/getProjectsData','App\Http\Controllers\ProjectController@getProjectsData');
+Route::post('/ProjectsDataInsert','App\Http\Controllers\ProjectController@ProjectsDataInsert');
+Route::post('/ProjectsDelete','App\Http\Controllers\ProjectController@ProjectsDelete');
+Route::post('/ProjectEditform','App\Http\Controllers\ProjectController@getProjectEditFormData');
+Route::post('/ProjectUpdate','App\Http\Controllers\ProjectController@ProjectUpdate');

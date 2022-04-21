@@ -14,7 +14,8 @@
 
 @include('Component.HomeCourse')
 
+@include('Component.HomeProjects')
 
+@include('Component.HomeContact')
 
 @endsection
-

@@ -18,7 +18,7 @@ class CoursesController extends Controller
 
      function getCoursesData(){
      
-        $result = json_encode(CourseModel::all());                      
+        $result = json_encode(CourseModel::orderBy('id','desc')->get());                      
         return $result;       
 
      }
@@ -91,29 +91,6 @@ class CoursesController extends Controller
 
 
 
-
-
-
-
-
-
-
-
-     function getCoursesDetails(Request $req){
- 
-        $id = $req->input('id');
-
-         $result = json_encode(CourseModel::where('id','=',$id)->get());
-
-       return $result;
-
-
-     }/* Course Details function Ended */
-
-
-
-
-
      /* Course Edit form Data show function Started */
      function getCourseEditFormData(Request $req){
  
@@ -144,21 +121,15 @@ class CoursesController extends Controller
         $course_img = $req->input('course_img');
 
 
-       // return $id.$course_name.$course_des.$course_fee.$course_totalenroll.$course_totalclass.$course_link.$course_img;
-
-      // return 20;
 
       $result = CourseModel::where('id','=',$id)->update(['course_name'=>$course_name,'course_des'=>$course_des,
         'course_fee'=>$course_fee,'course_totalenroll'=>$course_totalenroll,'course_totalclass'=>$course_totalclass,'course_link'=>$course_link,'course_img'=>$course_img]);
     
 
-        
 
-        //return $result;
+        if($result ==true){
 
-        if($res==true){
-
-            return 'Yes';
+            return 1;
 
          }else{
 

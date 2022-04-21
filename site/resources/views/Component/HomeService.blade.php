@@ -10,7 +10,7 @@
         <div class="col-md-3 p-2 ">
             <div class="card service-card text-center w-100">
                 <div class="card-body">
-                    <img class="service-card-logo " src="{{$value->service_img}} " alt="Card image cap">
+                    <img class="service-card-logo" src="{{$value->service_img}}" alt="Card image cap">
                     <h5 class="service-card-title mt-3">  {{$value->service_name}}  </h5>
                     <h6 class="service-card-subTitle p-0 m-0"> {{$value->service_des}}  </h6>
                 </div>
