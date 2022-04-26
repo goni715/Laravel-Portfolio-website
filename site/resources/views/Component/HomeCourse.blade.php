@@ -9,8 +9,8 @@
                 <img src="{{ $value->course_img}}" alt="Avatar" class="thumbnail-image ">
                 <div class="thumbnail-middle">
                     <h1 class="thumbnail-title">{{ $value->course_name}} </h1>
-                    <h1 class="thumbnail-subtitle">{{ $value->course_des}}</h1>
-                    <h1 class="thumbnail-subtitle">{{ $value->course_totalclass}}</h1>
+                    <h1 class="thumbnail-subtitle">{{$value->course_des}}</h1>
+                    <h1 class="thumbnail-subtitle"> {{$value->course_totalclass}}</h1>
                     <a target="_blank" href="{{ $value->course_link}}" class="normal-btn btn">শুরু করুন</a>
                 </div>
         </div>

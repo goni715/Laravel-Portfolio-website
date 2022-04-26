@@ -1,5 +1,5 @@
 @extends('Layout.app')
-
+@section('title','CoursePage')
 
 @section('content')
 
@@ -25,8 +25,6 @@
   </thead>
   <tbody id="courses_table">
   
-	
-	
 	
 	
   </tbody>
@@ -103,6 +101,7 @@
     </div>
   </div>
 </div>
+
 
 
 <!-- Delete Modal -->
@@ -491,6 +490,7 @@ axios.post('/CourseEditform', {
 
 
 }/* Course Edit Form Data Show function Ended */
+
 
 
 

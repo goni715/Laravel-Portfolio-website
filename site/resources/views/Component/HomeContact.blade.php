@@ -1,9 +1,9 @@
 
 
-<div class="container-fluid section-marginTop parallax text-center" style="background-color:rgba(0,0,0,0.7);">
+<div id="Contact" class="container-fluid section-marginTop parallax text-center" style="background-color:rgba(0,0,0,0.7); margin-bottom:5rem;">
     <div class="row ">
         <div class="col-md-6 contact-form ">
-            <h5 class="help-line-title"> <i class="fa-solid fa-bars"></i> হেলপ লাইন </h5>
+            <h5 class="help-line-title"> <i class="fas fa-bars"></i> হেলপ লাইন </h5>
             <h5 class="help-line-title m-0">  ০১৭৭৪৬৮৮১৫৯ </h5>
         </div>
         <div class="col-md-4 contact-form">

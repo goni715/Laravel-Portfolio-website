@@ -20,3 +20,14 @@ Route::get('/','App\Http\Controllers\HomeController@HomeIndex');
 
 Route::post('/contactSend','App\Http\Controllers\HomeController@ContactSend');
 
+
+
+Route::get('/courses','App\Http\Controllers\CoursesController@CoursePage');
+
+Route::get('/projects','App\Http\Controllers\ProjectsController@ProjectPage');
+
+Route::get('/policy','App\Http\Controllers\PolicyController@PolicyPage');
+
+Route::get('/terms','App\Http\Controllers\TermsController@TermsPage');
+
+Route::get('/contact','App\Http\Controllers\ContactController@ContactPage');

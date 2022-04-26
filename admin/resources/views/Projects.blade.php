@@ -1,5 +1,5 @@
 @extends('Layout.app')
-
+@section('title','ProjectPage')
 
 @section('content')
 
@@ -66,7 +66,7 @@
 
 <!-- Modals Part -->
 
-<!-- Service Add Modal -->
+<!-- Project Add Modal -->
 <div class="modal fade" id="addProjectModal" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

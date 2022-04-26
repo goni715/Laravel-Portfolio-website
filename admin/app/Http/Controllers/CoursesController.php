@@ -137,7 +137,7 @@ class CoursesController extends Controller
          }
 
 
-     }/* Service Update function Ended */
+     }/* Course Update function Ended */
 
 
 
